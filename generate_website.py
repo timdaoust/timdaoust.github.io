@@ -177,7 +177,7 @@ if __name__ == '__main__':
     results = list()
     for src in template_files:
         print("Building '%s'.." % src)
-        dst = src.replace(".template", ".test")
+        dst = src.replace(".template", "")
         parsed = parse(src)
         with open(dst, "w") as f:
             f.write(parsed)
