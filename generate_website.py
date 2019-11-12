@@ -121,14 +121,95 @@ def on_portfolio(image_directory):
 """
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
 
+def on_headerarea(unused):
+    header_area_text = """
+<header class="header-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="menu-area d-flex justify-content-between">
+                        <!-- Logo Area  -->
+                        <div class="logo-area">
+                            <a href="index.html">Tim Daoust</a>
+                        </div>
+
+                        <div class="menu-content-area d-flex align-items-center">
+                            <!-- Header Social Area -->
+                            <div class="header-social-area d-flex align-items-center">
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            <!-- Menu Icon -->
+                            <span class="navbar-toggler-icon" id="menuIcon"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>    
+"""
+    return header_area_text
+
+def on_menuarea(unused):
+    menu_area_text = """
+    <div class="mainMenu d-flex align-items-center justify-content-between">
+        <!-- Close Icon -->
+        <div class="closeIcon">
+            <i class="ti-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo Area -->
+        <div class="logo-area">
+            <a href="index.html">Tim Daoust</a>
+        </div>
+        <!-- Nav -->
+        <div class="sonarNav wow fadeInUp" data-wow-delay="1s">
+            <nav>
+                <ul>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-me.html">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Copwrite Text -->
+        <div class="copywrite-text">
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+ Website template by <a href="https://colorlib.com" target="_blank">Colorlib</a>under <a href="https://creativecommons.org/licenses/by-nc/3.0/us/" target="_blank"> CC 3.0 </a>.  
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+        </div>
+    </div>
+    """
+    return menu_area_text
+
 def on_template(template):
     definition = template.strip("{{").rstrip().rstrip("}}")
-    key, value = definition.split(":")
+    try:
+        key, value = definition.split(":")
+    except ValueError:
+        key = definition
+        value = ""
 
     if key == "heroarea":
         return on_heroarea(value)
     elif key == "portfolio":
         return on_portfolio(value)
+    elif key == "headerarea":
+        return on_headerarea(value)
+    elif key == "menuarea":
+        return on_menuarea(value)
     else:
         raise ValueError("Unsupported template: %s" % key)
 
