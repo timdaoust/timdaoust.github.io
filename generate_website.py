@@ -42,6 +42,7 @@ def get_image_details(image_directory):
             if not ext in [".jpg", ".png"]:
                 continue
             rel_path = os.path.relpath(full_path, cd)
+            rel_path = rel_path.replace(os.sep, '/')
             entry = {"image": rel_path, "title": title}
             images.append(entry)
     return images
