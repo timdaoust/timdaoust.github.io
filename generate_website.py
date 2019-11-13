@@ -83,34 +83,25 @@ def on_heroarea(image_directory):
 """
     return "\n\n".join([hero_start, hero_item, hero_end])
 
-
-def on_portfolio(image_directory):
-
-    gallery_start = """\
+gallery_start = """\
     <section class="sonar-projects-area" id="projects">
         <div class="container-fluid">
             <div class="row sonar-portfolio">
 """
 
-    gallery_item_text = """\
+gallery_item_text = """\
                 <!-- Single gallery Item -->
                 <div class="col-12 col-sm-6 col-lg-3 single_gallery_item landscapes studio wow fadeInUpBig" data-wow-delay="300ms">
                     <a class="gallery-img" href="{image}"><img src="{image}" alt=""></a>
                     <!-- Gallery Content -->
                     <div class="gallery-content">
                         <h4>{title}</h4>
-                        <p>Landscapes</p>
+                        <p>{category}</p>
                     </div>
                 </div>	
 """
-    gallery_item = ""
-    images = get_image_details(image_directory)
-    for image_entry in images:
-        gallery_item = gallery_item + gallery_item_text.format(
-            image= image_entry["image"],
-            title= image_entry["title"]
-        )
-    gallery_end = """\
+
+gallery_end = """\
             <div class="row">
                 <div class="col-12 text-center">
                     <a href="#" class="btn sonar-btn">Load More</a>
@@ -119,7 +110,88 @@ def on_portfolio(image_directory):
         </div>
     </section>
 """
+
+def get_item_text_per_image(item_text, image_directory, category=""):
+    gallery_item = ""
+    images = get_image_details(image_directory)
+    for image_entry in images:
+        gallery_item = gallery_item + item_text.format(
+            image=image_entry["image"],
+            title=image_entry["title"],
+            category=category
+        )
+    return gallery_item
+
+def on_portfolio(image_directory):
+    gallery_item = get_item_text_per_image(gallery_item_text, image_directory)
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
+
+def get_subdir_categories():
+    cd = os.path.abspath(os.path.dirname(__file__))
+    image_full_subdir = os.path.join(cd, "img", "portfolio-img")
+    categories = []
+    for base, dirs, fnames in os.walk(image_full_subdir):
+        for dir in dirs:
+            categories.append(dir)
+    return categories
+
+def on_subdir_portfolio(image_directory):
+    categories = get_subdir_categories()
+    gallery_item = ""
+    for cat in categories:
+        category_item = get_item_text_per_image(gallery_item_text,
+                                               cat,
+                                               cat)
+        gallery_item = gallery_item + category_item
+
+    return "\n\n".join([gallery_start, gallery_item, gallery_end])
+
+
+def subdir_portfolio_controls(image_directory):
+    controls_text_header ="""
+    <div class="hero-area d-flex align-items-center">
+        <!-- Hero Thumbnail -->
+        <div class="hero-thumbnail equalize bg-img" style="background-image: url(img/bg-img/portfolio.jpg);"></div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content equalize">
+            <div class="container-fluid h-100">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <div class="line"></div>
+                        <h2>Take a look at my Portfolio</h2>
+                        <p>This is my fantastic porfolio</p>
+                        <a href="#" class="btn sonar-btn white-btn">contact me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Menu -->
+        <div class="sonar-portfolio-menu">
+            <div class="text-center portfolio-menu">
+                <button class="btn active" data-filter="*">All</button>
+"""
+
+    control_text_item = """\
+                <button class="btn" data-filter=".{filter}">{filterText}</button>
+"""
+    categories = get_subdir_categories()
+    control_text_body = ""
+    for cat in categories:
+        control_text_body = control_text_body + control_text_item.format(
+            filter=cat,
+            filterText=mixedcase_to_title(cat)
+        )
+
+    controls_text_footer ="""\
+            </div>
+        </div>
+    </div>    
+"""
+    return "\n\n".join([controls_text_header,
+                        control_text_body, controls_text_footer])
+
 
 def on_headerarea(unused):
     header_area_text = """
@@ -136,7 +208,6 @@ def on_headerarea(unused):
                         <div class="menu-content-area d-flex align-items-center">
                             <!-- Header Social Area -->
                             <div class="header-social-area d-flex align-items-center">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                             </div>
                             <!-- Menu Icon -->
@@ -186,7 +257,7 @@ def on_menuarea(unused):
         <!-- Copwrite Text -->
         <div class="copywrite-text">
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
- Website template by <a href="https://colorlib.com" target="_blank">Colorlib</a>under <a href="https://creativecommons.org/licenses/by-nc/3.0/us/" target="_blank"> CC 3.0 </a>.  
+ Website template by <a href="https://colorlib.com" target="_blank">Colorlib</a> under <a href="https://creativecommons.org/licenses/by-nc/3.0/us/" target="_blank"> CC 3.0 </a>.  
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
         </div>
@@ -206,6 +277,10 @@ def on_template(template):
         return on_heroarea(value)
     elif key == "portfolio":
         return on_portfolio(value)
+    elif key == "subdir_portfolio_controls":
+        return subdir_portfolio_controls(value)
+    elif key == "subdir_portfolio":
+        return on_subdir_portfolio(value)
     elif key == "headerarea":
         return on_headerarea(value)
     elif key == "menuarea":
