@@ -1,37 +1,28 @@
-## Placeholder Website
+## Generated Webiste
 
-You can use the [editor on GitHub](https://github.com/timdaoust/timdaoust.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This website is just my personal site that hosts my art work.  Thanks very much for taking an interest in the code!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The website itself is built of 3 components
+- A template I got from color lib.  You can find it at [here] (https://colorlib.com/wp/template/sonar/)
+- Template files that are used to generate matching html.  Look for files called .template
+- A python script - generate_website.py.  This script replaces macros in the .template files with appropriate code
 
-### Markdown
+### Updating the website
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+1.  Install Python 
+2.  Run 
 ```
+python generate_website.py
+```
+3.  Edit the .template files to change the website.  Look for sections marked {{section_name}}.  These sections are 
+replaced by the relevant function in the python
+4.  The python is mainly used to generate pages based on the files in the img/ directory. Simply change the files to change the gallery!
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Licence
 
-### Jekyll Themes
+You are welcome to use the code generate_website.py and the .template files for your own projects under the Apache 2.0 license. 
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/timdaoust/timdaoust.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+The images are copyrighted, and can only be used in accordance with the github fork policy.  You may not represent the images
+as your own, and beyond the github user agreement you have no additional rights to the images
+ 
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
