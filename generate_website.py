@@ -226,7 +226,7 @@ def on_menuarea(unused):
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about-me.html">About Me</a>
+                        <a class="nav-link" href="about-me.html">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="services.html">Services</a>
