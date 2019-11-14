@@ -252,6 +252,30 @@ def on_menuarea(unused):
     """
     return menu_area_text
 
+def on_footer_area(unused):
+    footer_area_text = """
+    <footer class="footer-area">
+        <!-- back end content -->
+        <div class="backEnd-content">
+            <img class="dots" src="img/core-img/dots.png" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Copywrite Text -->
+                    <div class="copywrite-text">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Website template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    """
+    return footer_area_text
+
 def on_template(template):
     definition = template.strip("{{").rstrip().rstrip("}}")
     try:
@@ -270,6 +294,8 @@ def on_template(template):
         return on_subdir_portfolio(value)
     elif key == "headerarea":
         return on_headerarea(value)
+    elif key == "footerarea":
+        return on_footer_area(value)
     elif key == "menuarea":
         return on_menuarea(value)
     else:
