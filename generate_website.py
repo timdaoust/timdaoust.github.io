@@ -26,6 +26,11 @@ def mixedcase_to_title(name):
     s = re.sub(r"[-_]", ' ', title_version)
     return s.upper()
 
+
+def string_to_class(name):
+    return name.replace(" ", "").lower()
+
+
 def get_image_details(image_directory):
     images = []
     cd = os.path.abspath(os.path.dirname(__file__))
@@ -90,7 +95,7 @@ gallery_start = """\
 
 gallery_item_text = """\
                 <!-- Single gallery Item -->
-                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item landscapes studio wow fadeInUpBig" data-wow-delay="300ms">
+                <div class="col-12 col-sm-6 col-lg-3 single_gallery_item {category_class} wow fadeInUpBig" data-wow-delay="300ms">
                     <a class="gallery-img" href="{image}"><img src="{image}" alt=""></a>
                     <!-- Gallery Content -->
                     <div class="gallery-content">
@@ -99,13 +104,14 @@ gallery_item_text = """\
                     </div>
                 </div>	
 """
-
+# Adding this to gallery end might allow more to load - the href is bad, so I'm not sure how
+#
+#            <div class="row">
+#                <div class="col-12 text-center">
+#                    <a href="#" class="btn sonar-btn">Load More</a>
+#                </div>
+#            </div>
 gallery_end = """\
-            <div class="row">
-                <div class="col-12 text-center">
-                    <a href="#" class="btn sonar-btn">Load More</a>
-                </div>
-            </div>
         </div>
     </section>
 """
@@ -117,7 +123,8 @@ def get_item_text_per_image(item_text, image_directory, category=""):
         gallery_item = gallery_item + item_text.format(
             image=image_entry["image"],
             title=image_entry["title"],
-            category=category
+            category=category,
+            category_class=string_to_class(category)
         )
     return gallery_item
 
@@ -140,7 +147,7 @@ def on_subdir_portfolio(image_directory):
     for cat in categories:
         category_item = get_item_text_per_image(gallery_item_text,
                                                 image_directory + "\\" + cat,
-                                                image_directory + "\\" + cat)
+                                                mixedcase_to_title(cat))
         gallery_item = gallery_item + category_item
 
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
@@ -148,24 +155,6 @@ def on_subdir_portfolio(image_directory):
 
 def subdir_portfolio_controls(image_directory):
     controls_text_header ="""
-    <div class="hero-area d-flex align-items-center">
-        <!-- Hero Thumbnail -->
-        <div class="hero-thumbnail equalize bg-img" style="background-image: url(img/bg-img/portfolio.jpg);"></div>
-        
-        <!-- Hero Content -->
-        <div class="hero-content equalize">
-            <div class="container-fluid h-100">
-                <div class="row h-100 align-items-center justify-content-center">
-                    <div class="col-12 col-md-8">
-                        <div class="line"></div>
-                        <h2>Take a look at my Portfolio</h2>
-                        <p>This is my fantastic porfolio</p>
-                        <a href="#" class="btn sonar-btn white-btn">contact me</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Portfolio Menu -->
         <div class="sonar-portfolio-menu">
             <div class="text-center portfolio-menu">
@@ -179,14 +168,13 @@ def subdir_portfolio_controls(image_directory):
     control_text_body = ""
     for cat in categories:
         control_text_body = control_text_body + control_text_item.format(
-            filter=cat,
+            filter=string_to_class(mixedcase_to_title(cat)),
             filterText=mixedcase_to_title(cat)
         )
 
     controls_text_footer ="""\
             </div>
-        </div>
-    </div>    
+        </div>  
 """
     return "\n\n".join([controls_text_header,
                         control_text_body, controls_text_footer])
