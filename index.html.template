@@ -50,11 +50,11 @@
     <!-- ***** Header Area End ***** -->
 
     <!-- ***** Hero Area Start ***** -->
-{{heroarea:main_header}}
+{{heroarea:mainpage-img/main_header}}
     <!-- ***** Hero Area End ***** -->
 
     <!-- ***** Portfolio Area Start ***** -->
-{{portfolio:main_portfolio}}
+{{portfolio:mainpage-img/main_portfolio}}
     <!-- ***** Portfolio Area End ***** -->
 
     <!-- ***** Call to Action Area Start ***** -->

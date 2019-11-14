@@ -31,8 +31,7 @@ def get_image_details(image_directory):
     cd = os.path.abspath(os.path.dirname(__file__))
     os.chdir(cd)
     image_files = list()
-    image_full_subdir = os.path.join(cd, "img", "portfolio-img",
-                                     image_directory)
+    image_full_subdir = os.path.join(cd, "img", image_directory)
 
     for base, dirs, fnames in os.walk(image_full_subdir):
         for file in fnames:
@@ -126,9 +125,9 @@ def on_portfolio(image_directory):
     gallery_item = get_item_text_per_image(gallery_item_text, image_directory)
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
 
-def get_subdir_categories():
+def get_subdir_categories(dir):
     cd = os.path.abspath(os.path.dirname(__file__))
-    image_full_subdir = os.path.join(cd, "img", "portfolio-img")
+    image_full_subdir = os.path.join(cd, "img", dir)
     categories = []
     for base, dirs, fnames in os.walk(image_full_subdir):
         for dir in dirs:
@@ -136,12 +135,12 @@ def get_subdir_categories():
     return categories
 
 def on_subdir_portfolio(image_directory):
-    categories = get_subdir_categories()
+    categories = get_subdir_categories(image_directory)
     gallery_item = ""
     for cat in categories:
         category_item = get_item_text_per_image(gallery_item_text,
-                                               cat,
-                                               cat)
+                                                image_directory + "\\" + cat,
+                                                image_directory + "\\" + cat)
         gallery_item = gallery_item + category_item
 
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
@@ -176,7 +175,7 @@ def subdir_portfolio_controls(image_directory):
     control_text_item = """\
                 <button class="btn" data-filter=".{filter}">{filterText}</button>
 """
-    categories = get_subdir_categories()
+    categories = get_subdir_categories(image_directory)
     control_text_body = ""
     for cat in categories:
         control_text_body = control_text_body + control_text_item.format(

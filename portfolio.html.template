@@ -50,11 +50,11 @@
     <!-- ***** Header Area End ***** -->
 
     <!-- ***** Hero Area Start ***** -->
-{{subdir_portfolio_controls}}
+{{subdir_portfolio_controls:portfolio-img}}
     <!-- ***** Hero Area End ***** -->
 
     <!-- ****** Gallery Area Start ****** -->
-{{subdir_portfolio}}
+{{subdir_portfolio:portfolio-img}}
     <!-- ****** Gallery Area End ****** -->
 
     <!-- ***** Footer Area Start ***** -->
