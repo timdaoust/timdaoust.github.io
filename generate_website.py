@@ -66,7 +66,6 @@ def on_heroarea(image_directory):
                             <div class="hero-slides-content">
                                 <div class="line"></div>
                                 <h2>{title}</h2>
-                                <p> Details about this image</p>
                             </div>
                         </div>
                     </div>
@@ -195,7 +194,7 @@ def on_headerarea(unused):
                         <div class="menu-content-area d-flex align-items-center">
                             <!-- Header Social Area -->
                             <div class="header-social-area d-flex align-items-center">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/digitalcoffeeink/" data-toggle="tooltip" data-placement="bottom" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                             </div>
                             <!-- Menu Icon -->
                             <span class="navbar-toggler-icon" id="menuIcon"></span>
@@ -244,7 +243,7 @@ def on_menuarea(unused):
         <!-- Copwrite Text -->
         <div class="copywrite-text">
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
- Website template by <a href="https://colorlib.com" target="_blank">Colorlib</a> under <a href="https://creativecommons.org/licenses/by-nc/3.0/us/" target="_blank"> CC 3.0 </a>.  
+ Site template by <a href="https://colorlib.com" target="_blank">Colorlib</a> under <a href="https://creativecommons.org/licenses/by-nc/3.0/us/" target="_blank">CC3</a>.  
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
         </div>
@@ -265,7 +264,7 @@ def on_footer_area(unused):
                     <!-- Copywrite Text -->
                     <div class="copywrite-text">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Website template by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Site template by <a href="https://colorlib.com" target="_blank">Colorlib</a> under <a href="https://creativecommons.org/licenses/by-nc/3.0/us/" target="_blank">CC3</a>.  
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
                     </div>
