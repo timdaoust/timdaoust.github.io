@@ -80,9 +80,19 @@
                     <div class="about-us-content bg-white">
                         <div class="section-heading text-left wow fadeInUp" data-wow-delay="300ms">
                             <div class="line"></div>
-                            <h2>Look at my qualities</h2>
+                            <h2>Exhibitions</h2>
                         </div>
-                        <p class="wow fadeInUp" data-wow-delay="600ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Suspendisse sit amet laoreet neque. Fusce sagittis suscipit sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Suspendisse sit amet laoreet neque.</p>
+                        <p class="wow fadeInUp" data-wow-delay="300ms">
+                            <ul class="nomarker">
+                                <li>Foss Fine Art Gallery - The Studio Artists - London (2017) </li>
+                                <li>The Craft of Drawing and Painting: celebrating tradition today – Leighton House Museum, London (2015) </li>
+                                <li>Oxford Art Prize Exhibition  - 03 Gallery  Oxford (2015) </li>
+                                <li>Oxfordshire Artweeks, Fusion Arts Oxford  (2012) </li>
+                                <li>Oxford Art Society ,  Oxford Said Business School (2009) </li>
+                                <li>Oxford Art Society, Oxford Said Business School  (2008) </li>
+                                <li>ACCAD Open House, Columbus OH (2004) </li>
+                            </ul>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -92,20 +102,7 @@
     <div class="sonar-about-us-area second-part bg-img" style="background-image: url(img/bg-img/about3.jpg);">
         <!-- Back End Content -->
         <div class="backEnd-content">
-            <h2>Really</h2>
-        </div>
-
-        <div class="container-fluid">
-            <div class="row justify-content-end">
-                <div class="col-12 col-md-10 col-lg-7">
-                    <div class="about-us-content bg-white">
-                        <div class="section-heading text-left wow fadeInUp" data-wow-delay="300ms">
-                            <div class="line"></div>
-                        </div>
-                        <p class="wow fadeInUp" data-wow-delay="600ms">Consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Suspendisse sit amet laoreet neque. Fusce sagittis suscipit sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel tortor facilisis, volutpat nulla placerat, tincidunt mi. Nullam vel orci dui. Suspendisse sit amet laoreet neque.</p>
-                    </div>
-                </div>
-            </div>
+            <h2></h2>
         </div>
     </div>
 
