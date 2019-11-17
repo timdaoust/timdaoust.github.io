@@ -2,14 +2,24 @@
 """
 Generate website based on contents of image directory
 
-This examines given subdirectories, creates a page for each one, and constructs a gallery of all images
-
+This examines given subdirectories, creates a page for each one, and constructs
+a gallery of all images
 To change the website just change the contents of the directories and run 
- 
+
+Tim Daoust 2019.  This code is licensed under the Apache 2.0 license.
+The images associated with the website are NOT licensed for any use  except
+ the most limited use which is in accordance with the github user agreement.
+
+ If forking this project please delete the images and adapt for your own images.
 """
 import os
 import re
 import sys
+from PIL import Image
+from resizeimage import resizeimage
+
+
+
 
 
 def mixedcase_to_title(name):
@@ -31,6 +41,31 @@ def string_to_class(name):
     return name.replace(" ", "").lower()
 
 
+def resize_images(image_directory, output_directory):
+    images = []
+    cd = os.path.abspath(os.path.dirname(__file__))
+    os.chdir(cd)
+    image_files = list()
+    image_full_subdir = os.path.join(cd, "img", image_directory)
+
+    image_full_outputdir = os.path.join(cd, "img", output_directory)
+    if not os.path.exists(image_full_outputdir):
+        os.makedirs(image_full_outputdir)
+
+    for base, dirs, fnames in os.walk(image_full_subdir):
+        for file in fnames:
+            full_path = os.path.join(base, file)
+            name, ext = os.path.splitext(file)
+            if not ext in [".jpg", ".png"]:
+                continue
+            full_dest = os.path.join(image_full_outputdir, file)
+            full_dest = full_dest.replace(ext, "_sm" + ext)
+            with open(full_path, 'r+b') as f:
+                with Image.open(f) as image:
+                    cover = resizeimage.resize_width(image, 350)
+                    cover.save(full_dest, image.format)
+
+
 def get_image_details(image_directory):
     images = []
     cd = os.path.abspath(os.path.dirname(__file__))
@@ -42,12 +77,17 @@ def get_image_details(image_directory):
         for file in fnames:
             full_path = os.path.join(base, file)
             name, ext = os.path.splitext(file)
+            sm_name = name + "_sm" + ext
             title = mixedcase_to_title(name)
             if not ext in [".jpg", ".png"]:
                 continue
             rel_path = os.path.relpath(full_path, cd)
             rel_path = rel_path.replace(os.sep, '/')
-            entry = {"image": rel_path, "title": title}
+            thumb_name = "img/thumbnails/" + rel_path[4:]
+            thumb_name = thumb_name.replace(ext, "_sm" + ext)
+            entry = {"image": rel_path, "title": title,
+                     "thumbnail": thumb_name
+                     }
             images.append(entry)
     return images
 
@@ -77,7 +117,8 @@ def on_heroarea(image_directory):
     for image_entry in images:
         hero_item = hero_item + hero_item_text.format(
             image= image_entry["image"],
-            title= image_entry["title"]
+            title= image_entry["title"],
+            thumbnail= image_entry["thumbnail"],
         )
 
     hero_end = """\
@@ -95,7 +136,7 @@ gallery_start = """\
 gallery_item_text = """\
                 <!-- Single gallery Item -->
                 <div class="col-12 col-sm-6 col-lg-3 single_gallery_item {category_class} wow fadeInUpBig" data-wow-delay="300ms">
-                    <a class="gallery-img" href="{image}"><img src="{image}" alt=""></a>
+                    <a class="gallery-img" href="{image}"><img src="{thumbnail}" alt=""></a>
                     <!-- Gallery Content -->
                     <div class="gallery-content">
                         <h4>{title}</h4>
@@ -122,12 +163,15 @@ def get_item_text_per_image(item_text, image_directory, category=""):
         gallery_item = gallery_item + item_text.format(
             image=image_entry["image"],
             title=image_entry["title"],
+            thumbnail=image_entry["thumbnail"],
             category=category,
             category_class=string_to_class(category)
         )
     return gallery_item
 
 def on_portfolio(image_directory):
+    thumbnail = "thumbnails" + "\\" + image_directory
+    resize_images(image_directory, thumbnail)
     gallery_item = get_item_text_per_image(gallery_item_text, image_directory)
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
 
@@ -144,9 +188,12 @@ def on_subdir_portfolio(image_directory):
     categories = get_subdir_categories(image_directory)
     gallery_item = ""
     for cat in categories:
+        cat_dir =  image_directory + "\\" + cat
+        thumbnail = "thumbnails" + "\\" + image_directory + "\\" + cat
+        resize_images(cat_dir, thumbnail)
         category_item = get_item_text_per_image(gallery_item_text,
-                                                image_directory + "\\" + cat,
-                                                mixedcase_to_title(cat))
+                                               cat_dir,
+                                               mixedcase_to_title(cat))
         gallery_item = gallery_item + category_item
 
     return "\n\n".join([gallery_start, gallery_item, gallery_end])
@@ -227,9 +274,6 @@ def on_menuarea(unused):
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about-me.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="portfolio.html">Portfolio</a>

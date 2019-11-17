@@ -1,6 +1,8 @@
 ## Generated Webiste
 
 This website is just my personal site that hosts my art work.  Thanks very much for taking an interest in the code!
+These notes are primarily for myself in the future, but in the unlikely event that someone else reads this you 
+can reach me at tim.daoust@gmail.com 
 
 The website itself is built of 3 components
 
@@ -10,7 +12,10 @@ The website itself is built of 3 components
 
 ### Updating the website
 
-1.  Install Python 
+1.  Install Python and python-resize-image. From an adminstrator git bash run: 
+```
+ pip install python-resize-image
+```
 2.  Run 
 ```
 python generate_website.py

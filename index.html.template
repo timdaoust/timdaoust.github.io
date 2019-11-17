@@ -57,23 +57,6 @@
 {{portfolio:mainpage-img/main_portfolio}}
     <!-- ***** Portfolio Area End ***** -->
 
-    <!-- ***** Call to Action Area Start ***** -->
-    <div class="sonar-call-to-action-area section-padding-0-100">
-        <div class="backEnd-content">
-            <h2></h2>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="call-to-action-content wow fadeInUp" data-wow-delay="0.5s">
-                        <a href="mailto:tim.daoust@gmail.com" class="btn sonar-btn mt-100">contact me</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ***** Call to Action Area End ***** -->
-
     <!-- ***** Footer Area Start ***** -->
 {{footerarea}}
     <!-- ***** Footer Area End ***** -->
