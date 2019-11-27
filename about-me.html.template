@@ -84,7 +84,7 @@
                         </div>
                         <p class="wow fadeInUp" data-wow-delay="300ms">
                             <ul class="nomarker">
-                                <li>Rise of the Lionesses -   National Army Museum - London (2019 </li>
+                                <li>Rise of the Lionesses -   National Army Museum - London (2019) </li>
                                 <li>Foss Fine Art Gallery - The Studio Artists - London (2017) </li>
                                 <li>The Craft of Drawing and Painting: celebrating tradition today – Leighton House Museum, London (2015) </li>
                                 <li>Oxford Art Prize Exhibition  - 03 Gallery  Oxford (2015) </li>
@@ -110,6 +110,15 @@
     <!-- ***** Footer Area Start ***** -->
 {{footerarea}}
     <!-- ***** Footer Area End ***** -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153110946-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-153110946-1');
+    </script>
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
