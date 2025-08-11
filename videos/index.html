@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thoughts on Animation Programming — Post 1: Transitions</title>
+  <style>
+    :root { --w: 900px; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+           margin: 0; padding: 32px 16px; background: #0f1115; color: #e9edf1; }
+    .wrap { max-width: var(--w); margin: 0 auto; }
+    h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1.3rem; margin: 0 0 1rem; color: #a8b3be; font-weight: 600; }
+    .card { background: #141823; border: 1px solid #23293a; border-radius: 14px; padding: 16px; }
+    video { width: 100%; height: auto; display: block; border-radius: 10px; background: #000; }
+    footer { margin-top: 18px; color: #94a3b8; font-size: .95rem; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Thoughts on Animation Programming</h1>
+    <h2>Post 1 – Transitions</h2>
+
+    <section class="card">
+      <video controls preload="metadata">
+        <!-- Use MP4 for widest compatibility -->
+        <source src="TransitionThoughts.mp4" type="video/mp4" />
+        <!-- Optional WebM fallback -->
+        <source src="TransitionThoughts.webm" type="video/webm" />
+        Your browser can’t play this video. 
+        <a href="TransitionThoughts.mp4">Download the MP4</a> to watch locally.
+      </video>
+    </section>
+
+    <footer>
+      <p>Notes: MP4 (H.264/AAC) is recommended for GitHub Pages and broad browser support.</p>
+    </footer>
+  </main>
+</body>
+</html>
